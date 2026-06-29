@@ -228,25 +228,107 @@ footer { background: var(--surface-dark); color: var(--on-dark-soft); border-top
 .footer-bottom { border-top: 1px solid #1f1f1f; }
 .footer-bottom-inner { max-width: 1180px; margin: 0 auto; padding: 22px 32px; font: 400 12px/1.5 var(--font-sans); color: #6b6b6b; }
 
-/* ── Mobile ── */
-@media (max-width: 768px) {
-  .section-pad { padding: 72px 20px; }
-  .container { padding: 0 20px; }
-  .nav-inner { padding: 0 20px; }
-  .nav-links { display: none; }
-  .hero-content { padding: 80px 20px 72px; }
-  .hero-h1 { font-size: 38px; }
-  .hero-sub { font-size: 16px; }
-  .hero-chip-a, .hero-chip-b { display: none; }
-  .section-h2 { font-size: 30px; }
-  .grid-3, .grid-4, .consulting-grid, .grid-3-uni { grid-template-columns: 1fr; }
+/* ── Hamburger (hidden on desktop) ── */
+.nav-hamburger { display: none; background: none; border: none; padding: 6px; cursor: pointer; color: var(--ink); }
+.mobile-menu { display: none; position: fixed; inset: 0; top: 68px; background: rgba(255,255,255,.98); backdrop-filter: blur(12px); z-index: 49; flex-direction: column; padding: 24px 20px; gap: 4px; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font: 500 17px/1.4 var(--font-sans); color: var(--ink); padding: 14px 0; border-bottom: 1px solid var(--hairline-soft); }
+.mobile-menu-ctas { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.mobile-menu-ctas a { display: block; text-align: center; padding: 14px; border-radius: var(--radius-md); font: 600 15px/1 var(--font-sans); }
+
+/* ── Tablet (≤1024px) ── */
+@media (max-width: 1024px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .cta-box { padding: 48px 24px; }
-  .cta-h2 { font-size: 28px; }
-  .footer-inner { flex-direction: column; }
-  .footer-links-wrap { gap: 32px; }
-  .consulting-grid { gap: 40px; }
-  .uni-filter-row { flex-direction: column; align-items: flex-start; }
+  .consulting-grid { grid-template-columns: 1fr; gap: 48px; }
+  .section-h2 { font-size: 36px; }
+}
+
+/* ── Mobile (≤768px) ── */
+@media (max-width: 768px) {
+  /* Layout */
+  .section-pad { padding: 64px 20px; }
+  .container { padding: 0 20px; }
+
+  /* Nav */
+  .nav-inner { padding: 0 20px; gap: 0; }
+  .nav-links { display: none; }
+  .nav-ctas { display: none; }
+  .nav-hamburger { display: flex; margin-left: auto; align-items: center; justify-content: center; }
+
+  /* Hero */
+  .hero-content { padding: 72px 20px 64px; }
+  .hero-h1 { font-size: 34px; margin-top: 18px; }
+  .hero-sub { font-size: 15px; margin-top: 16px; }
+  .hero-ctas { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero-ctas .btn { text-align: center; padding: 15px 20px; font-size: 15px; }
+  .hero-chip-a, .hero-chip-b { display: none; }
+  .hero-tags { gap: 8px; margin-top: 32px; }
+  .hero-tag { font-size: 13px; padding: 7px 12px; }
+
+  /* Sections */
+  .section-label { font-size: 11px; }
+  .section-h2 { font-size: 26px; margin-top: 12px; }
+  .section-desc { font-size: 15px; margin-top: 12px; }
+
+  /* Grids */
+  .grid-3 { grid-template-columns: 1fr; gap: 14px; margin-top: 32px; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .grid-3-uni { grid-template-columns: 1fr; }
+  .consulting-grid { grid-template-columns: 1fr; gap: 40px; }
+  .consulting-steps { grid-template-columns: 1fr; gap: 10px; }
+
+  /* Major cards */
+  .click-hint { margin-top: 20px; }
+  .click-hint-text { font-size: 12px; }
+  .major-card { padding: 16px 14px 12px; }
+  .major-name { font-size: 14px; margin-top: 12px; }
+  .major-en { font-size: 12px; }
+  .major-cta span { font-size: 12px; }
+
+  /* Major detail */
+  .major-detail { margin-top: 16px; }
+  .detail-header { padding: 20px; }
+  .detail-h3 { font-size: 22px; }
+  .detail-body { padding: 20px; }
+  .uni-filter-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .uni-filter-btns { flex-wrap: wrap; gap: 6px; }
+  .uni-filter-btn { font-size: 12px; padding: 6px 12px; }
+
+  /* Videos */
+  .video-title { font-size: 15px; }
+
+  /* Reviews */
+  .review-card { padding: 20px; }
+
+  /* Consulting */
+  .consulting-grid > div:first-child { order: 0; }
+  .program-card { flex-direction: column; gap: 12px; }
+  .program-card img { width: 100% !important; height: 160px !important; border-radius: var(--radius-md); object-fit: cover; }
+  .consulting-grid h2 { font-size: 28px !important; }
+  .consulting-grid > div:first-child > div:nth-child(3) { flex-direction: column; }
+
+  /* CTA */
+  .cta-box { padding: 40px 20px; }
+  .cta-h2 { font-size: 24px; }
+  .cta-sub { font-size: 15px; }
+  .cta-btns { flex-direction: column; align-items: stretch; }
+  .cta-btns a { text-align: center; }
+  .cta-links { gap: 16px; }
+
+  /* Footer */
+  .footer-inner { flex-direction: column; padding: 48px 20px; gap: 32px; }
+  .footer-brand { max-width: 100% !important; }
+  .footer-links-wrap { gap: 28px; }
+  .footer-bottom-inner { padding: 18px 20px; }
+}
+
+/* ── Small mobile (≤390px) ── */
+@media (max-width: 390px) {
+  .hero-h1 { font-size: 28px; }
+  .section-h2 { font-size: 23px; }
+  .grid-4 { grid-template-columns: 1fr; }
+  .cta-h2 { font-size: 21px; }
 }
 </style>
 </head>
@@ -270,8 +352,24 @@ footer { background: var(--surface-dark); color: var(--on-dark-soft); border-top
       <a href="https://pf.kakao.com/_gzVkxl/chat" target="_blank" class="btn btn-ghost">카톡 상담</a>
       <a href="https://www.coei.com/info/consult/reserve.php" target="_blank" class="btn btn-primary" style="padding:9px 18px;">무료 상담 예약</a>
     </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="메뉴 열기">
+      <i data-lucide="menu" style="width:24px;height:24px;"></i>
+    </button>
   </div>
 </header>
+
+<!-- ── MOBILE MENU ── -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#factors" onclick="closeMobileMenu()">전공 선택 기준</a>
+  <a href="#majors" onclick="closeMobileMenu()">추천 전공</a>
+  <a href="#reviews" onclick="closeMobileMenu()">합격 후기</a>
+  <a href="#consulting" onclick="closeMobileMenu()">유학 컨설팅</a>
+  <a href="#why" onclick="closeMobileMenu()">왜 종로유학원</a>
+  <div class="mobile-menu-ctas">
+    <a href="https://pf.kakao.com/_gzVkxl/chat" target="_blank" style="background:var(--surface-card);color:var(--ink);" onclick="closeMobileMenu()">카톡 상담</a>
+    <a href="https://www.coei.com/info/consult/reserve.php" target="_blank" style="background:var(--primary);color:#fff;" onclick="closeMobileMenu()">무료 상담 예약</a>
+  </div>
+</nav>
 
 <!-- ── HERO ── -->
 <section class="hero">
@@ -635,6 +733,23 @@ footer { background: var(--surface-dark); color: var(--on-dark-soft); border-top
 </footer>
 
 <script>
+// ── Hamburger menu ──
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburgerBtn').innerHTML = '<i data-lucide="menu" style="width:24px;height:24px;"></i>';
+  if (window.lucide) lucide.createIcons();
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('hamburgerBtn').addEventListener('click', function() {
+    const menu = document.getElementById('mobileMenu');
+    const isOpen = menu.classList.toggle('open');
+    this.innerHTML = isOpen
+      ? '<i data-lucide="x" style="width:24px;height:24px;"></i>'
+      : '<i data-lucide="menu" style="width:24px;height:24px;"></i>';
+    if (window.lucide) lucide.createIcons();
+  });
+});
+
 // ── Data ──
 const MAJORS = [
   { id:'cyber', icon:'lock', name:'사이버보안', en:'Cybersecurity', safety:95,
